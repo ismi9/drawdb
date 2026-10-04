@@ -22,7 +22,13 @@ export default function App() {
   );
 
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      basename={
+        import.meta.env.BASE_URL && import.meta.env.BASE_URL !== "/"
+          ? import.meta.env.BASE_URL.replace(/\/$/, "")
+          : undefined
+      }
+    >
       <SettingsContextProvider>
         <RestoreScroll />
         {isLegacyHost() ? (
